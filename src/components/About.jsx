@@ -1,61 +1,55 @@
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-
-import AnimatedTitle from "./AnimatedTitle";
+import Scroll3DFadeIn from "../animations/Scroll3DFadeIn";
+import ScrollPinAnimation from "../animations/ScrollPinAnimation";
+import { HoverTilt } from "../animations/HoverTilt";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  useGSAP(() => {
-    const clipAnimation = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#clip",
-        start: "center center",
-        end: "+=800 center",
-        scrub: 0.5,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
-
-    clipAnimation.to(".mask-clip-path", {
-      width: "100vw",
-      height: "100vh",
-      borderRadius: 0,
-    });
-  });
-
   return (
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to Qtech
+          Welcome to Lorem Ipseum
         </p>
 
-        <AnimatedTitle
-          title="Inn<b>o</b>vative</span> S<b>o</b>lutions <br />
-  Y<b>o</b>ur digital future starts here <span>"
-          containerClass="mt-5 !text-black text-center"
-        />
+        <HoverTilt range="15">
+          <Scroll3DFadeIn
+            text="Welcome to <b>Qtech</b><br />Building your <b>digital future</b>"
+            containerClass="animated-title"
+            wordClass="mt-5 !text-black text-cente"
+          />
+        </HoverTilt>
 
         <div className="about-subtext">
-          <p>Transforming Ideas into Digital Solutions</p>
+          <p>Empowering Your Vision with Seamless Technology</p>
           <p className="text-gray-500">
-            Let’s shape your digital future together.
+            From concept to code, we craft digital experiences that captivate
+            and convert.
           </p>
         </div>
       </div>
 
-      <div className="h-dvh w-screen" id="clip">
-        <div className="mask-clip-path about-image">
-          <img
-            src="img/mountain.jpeg"
-            alt="Background"
-            className="absolute left-0 top-0 size-full object-cover"
-          />
+      <ScrollPinAnimation
+        targetClass=".mask-clip-path"
+        triggerId="#clip"
+        start="center center"
+        end="+=800 center"
+        scrub={0.5}
+        pin={true}
+        pinSpacing={true}
+      >
+        <div className="h-dvh w-screen" id="clip">
+          <div className="mask-clip-path about-image">
+            <img
+              src="img/about.webp"
+              alt="Background"
+              className="absolute left-0 top-0 size-full object-cover"
+            />
+          </div>
         </div>
-      </div>
+      </ScrollPinAnimation>
     </div>
   );
 };

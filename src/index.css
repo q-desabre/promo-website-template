@@ -119,6 +119,14 @@ body {
     will-change: opacity, transform;
   }
 
+  /* tailwind or custom CSS */
+  .scroll3d-word {
+    font-family: "zentry";
+    font-feature-settings: "ss01" on;
+    @apply opacity-0;
+    will-change: opacity, transform;
+  }
+
   .bento-tilt_1 {
     @apply relative border border-white/20 col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }

@@ -15,24 +15,23 @@ export const VideoPreview = ({ children }) => {
     const yOffset = clientY - (rect.top + rect.height / 2); // Calculate Y offset
 
     if (isHovering) {
-      const dampen = 0.1; // controls how far the movement stretches
-      const rotateFactor = 0.05;
-
+      // Move the container slightly in the direction of the cursor
       gsap.to(sectionRef.current, {
-        x: xOffset * dampen,
-        y: yOffset * dampen,
-        rotationY: xOffset * rotateFactor,
-        rotationX: -yOffset * rotateFactor,
-        scale: 1.02,
-        duration: 0.5,
-        ease: "power2.out",
+        x: xOffset,
+        y: yOffset,
+        rotationY: xOffset / 2, // Add 3D rotation effect
+        rotationX: -yOffset / 2,
+        transformPerspective: 500, // Perspective for realistic 3D effect
+        duration: 1,
+        ease: "power1.out",
       });
 
+      // Move the inner content in the opposite direction for a parallax effect
       gsap.to(contentRef.current, {
-        x: -xOffset * dampen,
-        y: -yOffset * dampen,
-        duration: 0.5,
-        ease: "power2.out",
+        x: -xOffset,
+        y: -yOffset,
+        duration: 1,
+        ease: "power1.out",
       });
     }
   };
@@ -64,7 +63,7 @@ export const VideoPreview = ({ children }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="absolute z-50 size-full  overflow-hidden rounded-lg"
+      className="absolute z-50 size-full overflow-hidden rounded-lg"
       style={{
         perspective: "500px",
       }}
