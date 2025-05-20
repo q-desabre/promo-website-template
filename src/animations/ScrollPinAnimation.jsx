@@ -5,17 +5,17 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollPinAnimation = ({
-  targetClass,
+  targetClasses = [],
   triggerId,
   start = "center center",
-  end = "+=800 center",
+  end = "+=300 center",
   scrub = 0.5,
   pin = true,
-  pinSpacing = true,
+  pinSpacing = false,
   children,
 }) => {
   useEffect(() => {
-    const animation = gsap.timeline({
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: triggerId,
         start,
@@ -26,17 +26,26 @@ const ScrollPinAnimation = ({
       },
     });
 
-    animation.to(targetClass, {
-      width: "100vw",
-      height: "100vh",
-      borderRadius: 0,
+    targetClasses.forEach((targetClass) => {
+      timeline.to(
+        targetClass,
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          width: "100vw",
+          height: "100vh",
+          borderRadius: 0,
+          border: "0px",
+        },
+        0
+      );
     });
 
-    // Clean up on unmount: Kill active scroll triggers
+    // 🧼 Clean up both ScrollTrigger and GSAP timeline on unmount
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (timeline.scrollTrigger) timeline.scrollTrigger.kill();
+      timeline.kill();
     };
-  }, [targetClass, triggerId, start, end, scrub, pin, pinSpacing]);
+  }, [targetClasses, triggerId, start, end, scrub, pin, pinSpacing]);
 
   return <>{children}</>;
 };

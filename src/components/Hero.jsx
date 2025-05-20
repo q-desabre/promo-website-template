@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import { TiLocationArrow } from "react-icons/ti";
 import { useEffect, useRef, useState } from "react";
-
+import VideoPreview from "@components/VideoPreview";
 import HoverTiltAnimated from "@animations/HoverTiltAnimated";
 
 import Button from "./Button";
@@ -81,7 +81,7 @@ const Hero = () => {
   });
 
   // Generate video source
-  const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+  const getVideoSrc = (index) => `videos/Nature/hero-${index}.mp4`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
@@ -103,11 +103,11 @@ const Hero = () => {
       >
         <div>
           {/* Mini video preview */}
-          <div className="mask-clip-path absolute-center z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
-            <HoverTiltAnimated>
+          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+            <VideoPreview>
               <div
                 onClick={handleMiniVdClick}
-                className="border border-black origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100 p-2 bg-white"
+                className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
               >
                 <video
                   ref={nextVdRef}
@@ -119,7 +119,7 @@ const Hero = () => {
                   onLoadedData={handleVideoLoad}
                 />
               </div>
-            </HoverTiltAnimated>
+            </VideoPreview>
           </div>
 
           {/* Video elements */}
@@ -145,32 +145,31 @@ const Hero = () => {
         </div>
 
         {/* Hero heading */}
-        <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75 text-outline">
-          Web desig<b>n</b>
+        <h1 className="font-clash hero-heading absolute bottom-5 right-5 z-40 text-blue-75 text-shadow-lg/100">
+          Your Brand
         </h1>
 
         {/* Description and Button */}
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="special-font hero-heading text-blue-100 text-outline">
-              redefi<b>n</b>e
-            </h1>
-            <p className="text-2xl mb-5 max-w-128 font-robert-medium text-blue-100 filter contrast-150">
-              Transform the Web <br /> Redefine the User Experience
+            <h1 className="hero-heading  text-shadow-lg/100">Your Vision</h1>
+            <p className="text-xl mt-5 mb-5 max-w-128 font-iner text-blue-100 filter text-shadow-lg/100">
+              Start with a simple intro or tagline <br /> Keep it brief, clear,
+              and engaging
             </p>
             <Button
               id="watch-trailer"
               title="Go to my portfolio"
               leftIcon={<TiLocationArrow />}
-              containerClass="!bg-blue-400 flex-center gap-1"
+              containerClass="!bg-green-400 flex-center gap-1 "
             />
           </div>
         </div>
       </div>
 
       {/* Duplicate heading for effect */}
-      <h1 className="special-font hero-heading absolute bottom-5 right-5 text-black">
-        Web desig<b>n</b>
+      <h1 className="font-clash hero-heading absolute bottom-5 right-5 !text-black">
+        Your Brand
       </h1>
     </div>
   );

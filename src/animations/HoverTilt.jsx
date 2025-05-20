@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-export const HoverTilt = ({ children, className = "", range = 5 }) => {
+const HoverTilt = ({ children, className = "", range = 5 }) => {
   const [transformStyle, setTransformStyle] = useState("");
   const itemRef = useRef(null);
 
@@ -36,3 +36,5 @@ export const HoverTilt = ({ children, className = "", range = 5 }) => {
     </div>
   );
 };
+
+export default HoverTilt;

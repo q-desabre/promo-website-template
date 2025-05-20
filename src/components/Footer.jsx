@@ -9,29 +9,32 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-screen bg-[#5542ff] py-4 text-black">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
-        <p className="text-center text-sm font-light md:text-left">
-          ©Nova 2024. All rights reserved
+    <footer className="w-screen bg-green-400 py-4 text-black">
+      <div className="container mx-auto flex flex-col items-center gap-4 px-4 md:flex-row md:items-center">
+        {/* Left side takes equal space */}
+        <p className="flex-1 text-center text-sm font-light md:text-left">
+          ©Qtech 2025. All rights reserved
         </p>
 
-        <div className="flex justify-center gap-4  md:justify-start">
+        {/* Icons container fixed width and centered */}
+        <div className="flex justify-center gap-6 w-48">
           {socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black transition-colors duration-500 ease-in-out hover:text-white"
+              className="text-black transition-colors duration-500 ease-in-out hover:text-white text-2xl"
             >
               {link.icon}
             </a>
           ))}
         </div>
 
+        {/* Right side takes equal space */}
         <a
           href="#privacy-policy"
-          className="text-center text-sm font-light hover:underline md:text-right"
+          className="flex-1 text-center text-sm font-light hover:underline md:text-right"
         >
           Privacy Policy
         </a>
