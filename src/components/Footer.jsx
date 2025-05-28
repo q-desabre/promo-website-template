@@ -9,7 +9,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-screen bg-green-400 py-4 text-black">
+    <footer className="w-screen bg-accent py-4 text-black">
       <div className="container mx-auto flex flex-col items-center gap-4 px-4 md:flex-row md:items-center">
         {/* Left side takes equal space */}
         <p className="flex-1 text-center text-sm font-light md:text-left">

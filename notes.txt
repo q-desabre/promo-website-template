@@ -1,2 +1,0 @@
-the hover tilt animated is clunky
-maybe look a bit more into tilt wrapper

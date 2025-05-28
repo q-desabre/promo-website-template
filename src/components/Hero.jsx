@@ -4,7 +4,9 @@ import { ScrollTrigger } from "gsap/all";
 import { TiLocationArrow } from "react-icons/ti";
 import { useEffect, useRef, useState } from "react";
 import VideoPreview from "@components/VideoPreview";
+import ThreeBodyLoader from "@components/ThreeBodyLoader";
 import HoverTiltAnimated from "@animations/HoverTiltAnimated";
+import { useTheme } from "@components/ThemeProvider";
 
 import Button from "./Button";
 
@@ -80,26 +82,23 @@ const Hero = () => {
     });
   });
 
+  const { theme } = useTheme();
   // Generate video source
-  const getVideoSrc = (index) => `videos/Nature/hero-${index}.mp4`;
+  const getVideoSrc = (index) => `videos/${theme}/hero-${index}.mp4`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {/* Loading state */}
+      {/* Loading spinner */}
       {loading && (
         <div className="flex-center absolute z-[100] h-dvh w-screen bg-violet-50">
-          <div className="three-body">
-            <div className="three-body__dot"></div>
-            <div className="three-body__dot"></div>
-            <div className="three-body__dot"></div>
-          </div>
+          <ThreeBodyLoader />
         </div>
       )}
 
       {/* Video frame */}
       <div
         id="video-frame"
-        className="relative z-10 h-dvh w-screen rounded-lg bg-black overflow-hidden"
+        className="relative z-10 h-dvh w-screen rounded-lg bg-background overflow-hidden"
       >
         <div>
           {/* Mini video preview */}
@@ -128,6 +127,7 @@ const Hero = () => {
             src={getVideoSrc(currentIndex)}
             loop
             muted
+            autoPlay
             id="next-video"
             className="absolute-center invisible z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
@@ -145,30 +145,31 @@ const Hero = () => {
         </div>
 
         {/* Hero heading */}
-        <h1 className="font-clash hero-heading absolute bottom-5 right-5 z-40 text-blue-75 text-shadow-lg/100">
+        <h1 className="font-clash hero-heading absolute bottom-5 right-5 z-40 text-shadow-lg/100">
           Your Brand
         </h1>
 
         {/* Description and Button */}
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="hero-heading  text-shadow-lg/100">Your Vision</h1>
-            <p className="text-xl mt-5 mb-5 max-w-128 font-iner text-blue-100 filter text-shadow-lg/100">
+            <h1 className="hero-heading">Your Vision</h1>
+            <p className="text-xl mt-5 mb-5 max-w-128 font-inter text-secondary filter text-shadow-lg/100">
               Start with a simple intro or tagline <br /> Keep it brief, clear,
               and engaging
             </p>
             <Button
+              href="https://q-desabre.github.io/qtech-portfolio/"
               id="watch-trailer"
               title="Go to my portfolio"
               leftIcon={<TiLocationArrow />}
-              containerClass="!bg-green-400 flex-center gap-1 "
+              containerClass="bg-accent text-accent-contrast flex-center gap-1"
             />
           </div>
         </div>
       </div>
 
       {/* Duplicate heading for effect */}
-      <h1 className="font-clash hero-heading absolute bottom-5 right-5 !text-black">
+      <h1 className="font-clash hero-heading absolute bottom-5 right-5 !text-background-b">
         Your Brand
       </h1>
     </div>

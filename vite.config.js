@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => ({
       "@components": path.resolve(__dirname, "src/components"),
       "@animations": path.resolve(__dirname, "src/animations"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
 
